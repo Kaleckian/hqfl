@@ -1,3 +1,14 @@
+# emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# haskell
 dist
 cabal-dev
 *.o
