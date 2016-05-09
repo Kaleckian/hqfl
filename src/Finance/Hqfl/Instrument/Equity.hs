@@ -3,4 +3,4 @@ module Finance.Hqfl.Instrument.Equity
 
 import Finance.Hqfl.Instrument.Type
 
-data Equity = Equity Price deriving (Show)
+data Equity = Equity Double deriving (Show)
