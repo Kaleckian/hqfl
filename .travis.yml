@@ -1,4 +1,4 @@
-sudo: required
+sudo: false
 
 language: haskell
 
@@ -7,10 +7,21 @@ cache:
       - $HOME/.stack/
 
 before_install:
-- mkdir -p ~/.local/bin
-- export PATH=$HOME/.local/bin:$PATH
-- travis_retry curl -skL https://www.stackage.org/stack/osx-x86_64 | tar xz --strip-components=1 --include '*/stack' -C ~/.local/bin
+  # Download and unpack the stack executable
+  - mkdir -p ~/.local/bin
+  - export PATH=$HOME/.local/bin:$PATH
+  - travis_retry curl -L https://www.stackage.org/stack/osx-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
 
+before_install:
+    - export PATH=/opt/ghc/7.10.2/bin:$PATH
+
+addons:
+  apt:
+    sources:
+      - hvr-ghc
+      packages:
+        - ghc-7.10.3
+        
 install:
 - stack --no-terminal --skip-ghc-check setup
 - stack build --no-terminal --skip-ghc-check --only-snapshot
