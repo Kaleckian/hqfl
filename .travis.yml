@@ -1,4 +1,4 @@
-sudo: false
+sudo: required
 
 language: haskell
 
@@ -10,14 +10,13 @@ before_install:
   # Download and unpack the stack executable
   - mkdir -p ~/.local/bin
   - export PATH=$HOME/.local/bin:$PATH
+  - export PATH=/opt/ghc/7.10.3/bin:$PATH
   - travis_retry curl -L https://www.stackage.org/stack/osx-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
-
-before_install:
-    - export PATH=/opt/ghc/7.10.2/bin:$PATH
-
+  - chmod a+x ~/.local/bin/stack
+  
 install:
-- stack --no-terminal --skip-ghc-check setup
-- stack build --no-terminal --skip-ghc-check --only-snapshot
+  - stack +RTS -N2 -RTS setup
+  - stack +RTS -N2 -RTS build --only-snapshot
 
 script:
 - stack --no-terminal --skip-ghc-check test
