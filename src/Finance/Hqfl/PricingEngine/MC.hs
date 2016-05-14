@@ -1,3 +1,5 @@
+{-# LANGUAGE FlexibleInstances #-}
+
 module MC where
 
 import Data.Decimal
@@ -17,3 +19,10 @@ class MC a where
 
 instance MC Equity where
   price (Equity p) = simulate 2 2 p 0.25 0.2 0.01 
+
+class Derivative a where
+  price2 :: a -> a
+
+instance Derivative (Option Equity)  where
+  price2 x = x
+  

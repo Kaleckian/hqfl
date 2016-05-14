@@ -71,11 +71,3 @@ instance Eq a => Eq (Option a) where
     
 instance Functor Option  where
   fmap f (Option a b c d e g) = Option (f a) b c d e g
-
-class Option a where
-  callPayOff :: Double -> Double
-  putPayOff :: Double -> Double
-
-instance Option Equity where
-  callPayOff = undefined
-  putPayOff = undefined
