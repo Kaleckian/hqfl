@@ -15,13 +15,6 @@ before_install:
 before_install:
     - export PATH=/opt/ghc/7.10.2/bin:$PATH
 
-addons:
-  apt:
-    sources:
-      - hvr-ghc
-      packages:
-        - ghc-7.10.3
-        
 install:
 - stack --no-terminal --skip-ghc-check setup
 - stack build --no-terminal --skip-ghc-check --only-snapshot
