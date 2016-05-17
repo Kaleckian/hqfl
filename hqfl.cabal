@@ -20,14 +20,17 @@ library
                      , Finance.Hqfl.Instrument.Type
                      , Finance.Hqfl.Instrument.Equity
                      , Finance.Hqfl.Instrument.Option
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       Decimal >= 0.4.2
+                     , base >= 4.7 && < 5
                      , containers >= 0.5.6.2
+                     , hspec >= 2.2.3
                      , mtl >= 2.2.1
                      , mwc-random >= 0.13.3.2
                      , pipes >= 4.1.8
-                     , random >= 1.1
                      , primitive >= 0.6.1.0
-                     , Decimal >= 0.4.2
+                     , random >= 1.1
+                     , random-fu >= 0.2.6.2
+                     , statistics >= 0.13.2.3
   default-language:    Haskell2010
 
 executable hqfl-exe
@@ -38,6 +41,7 @@ executable hqfl-exe
                      , containers >= 0.5.6.2
                      , ghc-mod
                      , hqfl
+                     , hspec >= 2.2.3
                      , mtl >= 2.2.1
                      , pipes >= 4.1.8
                      , primitive >= 0.6.1.0
@@ -51,10 +55,11 @@ test-suite hqfl-test
   build-depends:       base
                      , containers >= 0.5.6.2
                      , hqfl
+                     , hspec >= 2.2.3
+                     , hspec >= 2.2.3
                      , mtl >= 2.2.1
                      , pipes >= 4.1.8
                      , random >= 1.1
-                     , hspec >= 2.2.3
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
 
