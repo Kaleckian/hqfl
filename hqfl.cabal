@@ -20,6 +20,7 @@ library
                      , Finance.Hqfl.Instrument.Type
                      , Finance.Hqfl.Instrument.Equity
                      , Finance.Hqfl.Instrument.Option
+                     , Finance.Hqfl.Pricer.MonteCarlo
   build-depends:       Decimal >= 0.4.2
                      , base >= 4.7 && < 5
                      , containers >= 0.5.6.2
@@ -36,7 +37,7 @@ library
 executable hqfl-exe
   hs-source-dirs:      app
   main-is:             Main.hs
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  ghc-options:         -O2 -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , containers >= 0.5.6.2
                      , ghc-mod
