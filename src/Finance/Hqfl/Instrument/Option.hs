@@ -63,11 +63,11 @@ data Type = Call | Put deriving (Eq, Show)
 data Style = European | American deriving (Eq, Show)-- Vanilla
 data Exotic = Bermudan | Asian | Barrier | Binary deriving (Eq, Show) -- Exotics
 
-data Option a = Option a Type Style Strike Maturity Value deriving (Show)
+data Option a = Option a Type Style Strike Maturity deriving (Show)
 
 -- experimenting; review later
 instance Eq a => Eq (Option a) where
-  Option a1 b1 c1 d1 e1 f1 == Option a2 b2 c2 d2 e2 f2 = a1 == a2 && b1 == b2 && c1 == c2 && d1 == d2 && e1 == e2 && f1 == f2
+  Option a1 b1 c1 d1 e1 == Option a2 b2 c2 d2 e2 = a1 == a2 && b1 == b2 && c1 == c2 && d1 == d2 && e1 == e2
     
 instance Functor Option  where
-  fmap f (Option a b c d e g) = Option (f a) b c d e g
+  fmap f (Option a b c d e) = Option (f a) b c d e
