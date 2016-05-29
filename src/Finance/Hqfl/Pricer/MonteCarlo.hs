@@ -33,9 +33,10 @@ discount :: Double -> Double
 discount x = x * exp(-1 * 0.05)
 
 class MC a where
-  price :: PrimMonad m => a -> m Double
+  price :: PrimMonad m => a -> Int -> Int -> Double -> Double ->  m Double
 
+-- TODO: This design might be an issue if you have american; better to create separate instances in my opinion so one instance for european puts one instance for american puts etc??
 instance MC (Option Equity) where
-  price (Option (Equity p) t _ _ _) = case t of
-    Call -> discount <$> avg <$> simulate 50 100 p 0.05 0.2 0.01 (\x -> max 0 (x - 100))
-    Put  -> discount <$> avg <$> simulate 50 100 p 0.05 0.2 0.01 (\x -> max 0 (100 - x))
+  price (Option (Equity p) t _ s m) paths steps rate vol  = case t of
+    Call -> discount <$> avg <$> simulate paths steps p rate vol (m / fromIntegral steps) (\x -> max 0 (x - s))
+    Put  -> discount <$> avg <$> simulate paths steps p rate vol (m / fromIntegral steps) (\x -> max 0 (s - x))
