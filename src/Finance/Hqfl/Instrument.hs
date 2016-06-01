@@ -17,7 +17,7 @@ module Finance.Hqfl.Instrument
        , module Finance.Hqfl.Instrument.Insurance
        , module Finance.Hqfl.Instrument.Swap
        , module Finance.Hqfl.Instrument.Weather
-       , Instrument(..)
+       , module Finance.Hqfl.Instrument.Type
        ) where
 
 import Finance.Hqfl.Instrument.Equity
@@ -34,7 +34,5 @@ import Finance.Hqfl.Instrument.Index
 import Finance.Hqfl.Instrument.Insurance
 import Finance.Hqfl.Instrument.Swap
 import Finance.Hqfl.Instrument.Weather
-
-
-data Instrument = Instrument (Option Equity)
+import Finance.Hqfl.Instrument.Type
 
