@@ -10,16 +10,21 @@
 ----------------------------------------------------------------------------
 
 module Finance.Hqfl.Instrument.Type
-  (
-    Price
-  , Strike
+(
+    Barrier
   , Maturity
+  , Price
+  , Strike
   , Value
-  ) where
+  , Type(..)
+  , Style(..)
+) where
   
-import Data.Decimal
+type Barrier = Double
+type Maturity = Double
+type Price = Double
+type Strike = Double
+type Value = Double
 
-type Price = Decimal
-type Strike = Decimal
-type Maturity = Decimal
-type Value = Decimal
+data Type = Call | Put deriving (Eq, Show)
+data Style = European | American deriving (Eq, Show)
