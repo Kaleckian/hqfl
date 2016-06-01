@@ -20,7 +20,22 @@ library
                      , Finance.Hqfl.Instrument.Type
                      , Finance.Hqfl.Instrument.Equity
                      , Finance.Hqfl.Instrument.Option
+                     , Finance.Hqfl.Instrument.BarrierOption
                      , Finance.Hqfl.Pricer.MonteCarlo
+                     , Finance.Hqfl.Pricer.BlackScholes
+                     , Finance.Hqfl.Instrument.Bond
+                     , Finance.Hqfl.Instrument.Cap
+                     , Finance.Hqfl.Instrument.Commodity
+                     , Finance.Hqfl.Instrument.Credit
+                     , Finance.Hqfl.Instrument.Currency
+                     , Finance.Hqfl.Instrument.Energy
+                     , Finance.Hqfl.Instrument.Forward
+                     , Finance.Hqfl.Instrument.Future
+                     , Finance.Hqfl.Instrument.Index
+                     , Finance.Hqfl.Instrument.Insurance
+                     , Finance.Hqfl.Instrument.Swap
+                     , Finance.Hqfl.Instrument.Weather
+
   build-depends:       Decimal >= 0.4.2
                      , base >= 4.7 && < 5
                      , containers >= 0.5.6.2
@@ -37,7 +52,7 @@ library
 executable hqfl-exe
   hs-source-dirs:      app
   main-is:             Main.hs
-  ghc-options:         -O2 -threaded -rtsopts -with-rtsopts=-N
+  ghc-options:         -Wall -O2 -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , containers >= 0.5.6.2
                      , ghc-mod
