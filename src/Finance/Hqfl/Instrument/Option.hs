@@ -15,9 +15,9 @@ module Finance.Hqfl.Instrument.Option
 )
 where
 
-import Data.Decimal
+
 import Finance.Hqfl.Instrument.Type
-import Data.Functor
+
 {-
 
 Classifications:
@@ -56,12 +56,11 @@ Exotic options are non-Vanilla options:
 -- TODO: Function to get the current price of the underlying
 -- TODO: Typeclasses to categorise options according to their pricing function: American, European - each instance to supply pricing method
 
-
 data Option a = Option a Type Style Strike Maturity deriving (Show)
 
 -- experimenting; review later
-instance Eq a => Eq (Option a) where
-  Option a1 b1 c1 d1 e1 == Option a2 b2 c2 d2 e2 = a1 == a2 && b1 == b2 && c1 == c2 && d1 == d2 && e1 == e2
+--instance Eq a => Eq (Option a) where
+--  Option a1 b1 c1 d1 e1 == Option a2 b2 c2 d2 e2 = a1 == a2 && b1 == b2 && c1 == c2 && d1 == d2 && e1 == e2
     
-instance Functor Option  where
-  fmap f (Option a b c d e) = Option (f a) b c d e
+--instance Functor Option  where
+--  fmap f (Option a b c d e) = Option (f a) b c d e
