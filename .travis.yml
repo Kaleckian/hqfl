@@ -57,8 +57,7 @@ install:
   set -ex
   case "$BUILD" in
     stack)
-      stack install hpc-coveralls
-      stack --no-terminal --install-ghc $ARGS test --bench --only-dependencies
+      stack --no-terminal --install-ghc $ARGS test :hqfl-test  --bench --only-dependencies --coverage
       ;;
     cabal)
       cabal --version
@@ -95,4 +94,5 @@ script:
   set +ex
 
 after_script:
-  - hpc-coveralls test/Spec
+ - travis_retry curl -L https://github.com/rubik/stack-hpc-coveralls/releases/download/v0.0.2.0/shc-linux-x64-$GHCVER.tar.bz2 | tar -xj
+ - ./shc hqfl hqfl-test
