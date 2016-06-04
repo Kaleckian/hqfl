@@ -5,6 +5,7 @@ module Finance.Hqfl.Instrument
        , module Finance.Hqfl.Instrument.Bond
 
          -- Derivatives
+       , module Finance.Hqfl.Instrument.BarrierOption
        , module Finance.Hqfl.Instrument.Option
        , module Finance.Hqfl.Instrument.Cap
        , module Finance.Hqfl.Instrument.Commodity
@@ -20,6 +21,7 @@ module Finance.Hqfl.Instrument
        , module Finance.Hqfl.Instrument.Type
        ) where
 
+import Finance.Hqfl.Instrument.BarrierOption
 import Finance.Hqfl.Instrument.Equity
 import Finance.Hqfl.Instrument.Bond
 import Finance.Hqfl.Instrument.Option
@@ -35,4 +37,3 @@ import Finance.Hqfl.Instrument.Insurance
 import Finance.Hqfl.Instrument.Swap
 import Finance.Hqfl.Instrument.Weather
 import Finance.Hqfl.Instrument.Type
-
