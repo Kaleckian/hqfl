@@ -1,2 +1,6 @@
 module Finance.Hqfl.Instrument.Currency
-       where
+  (
+    Currency
+  )where
+
+data Currency
