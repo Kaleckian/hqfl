@@ -13,14 +13,13 @@
 
 module Finance.Hqfl.Pricer.MonteCarlo where
 
-import Data.Decimal
 import Finance.Hqfl.Instrument
 import Control.Monad.Primitive
 import Control.Monad.State
 import System.Random.MWC
 import System.Random.MWC.Distributions
 import Data.List
-import Finance.Hqfl.Instrument.Type
+
 -- TODO : extend to handle different SDEs
 -- TODO : Refactor to put simulation code separate from option pricing code
 -- TODO : Parallelise simulation
@@ -44,10 +43,9 @@ discount :: Double -> Double
 discount x = x * exp(-1 * 0.05)
 
 class MC a where
-  price :: PrimMonad m => a -> Int -> Int -> Double -> Double ->  m Double
+  mc_price :: PrimMonad m => a -> Int -> Int -> Double -> Double ->  m Double
 
--- TODO: This design might be an issue if you have american; better to create separate instances in my opinion so one instance for european puts one instance for american puts etc??
-instance MC (Option Equity) where
-  price (Option (Equity p) t _ s m) paths steps rate vol  = case t of
+instance MC (Option Equity)  where
+  mc_price (Option (Equity p) t _ s m) paths steps rate vol  = case t of
       Call -> discount <$> avg <$> simulate paths steps p rate vol (m / fromIntegral steps) (\x -> max 0 (x - s))
       Put  -> discount <$> avg <$> simulate paths steps p rate vol (m / fromIntegral steps) (\x -> max 0 (s - x))
