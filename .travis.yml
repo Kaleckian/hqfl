@@ -97,9 +97,9 @@ after_script:
 - |
   if [ `uname` = "Darwin" ]
   then
-    travis_retry curl --insecure -L https://github.com/rubik/stack-hpc-coveralls/releases/download/v0.0.2.0/shc-linux-x64-$GHCVER.tar.bz2 | tar -xj--include '*/stack' -C ~/.local/bin
+    travis_retry curl --insecure -L https://github.com/rubik/stack-hpc-coveralls/releases/download/v0.0.3.0/shc-linux-x64-7.10.3.tar.bz2 | tar -xj--include '*/stack' -C ~/.local/bin
   else
-    travis_retry curl -L https://github.com/rubik/stack-hpc-coveralls/releases/download/v0.0.2.0/shc-linux-x64-$GHCVER.tar.bz2 | tar -xj-C ~/.local/bin '*/stack'
+    travis_retry curl -L https://github.com/rubik/stack-hpc-coveralls/releases/download/v0.0.3.0/shc-linux-x64-7.10.3.tar.bz2 | tar -xj-C ~/.local/bin '*/stack'
   fi
 
 - ./shc hqfl hqfl-test
