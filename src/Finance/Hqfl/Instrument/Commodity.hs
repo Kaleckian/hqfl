@@ -1,2 +1,7 @@
 module Finance.Hqfl.Instrument.Commodity
-       where
+  (
+    Commodity
+  )where
+
+
+data Commodity

@@ -1,2 +1,6 @@
 module Finance.Hqfl.Instrument.Cap
-       where
+  (
+    Cap
+  )where
+
+data Cap

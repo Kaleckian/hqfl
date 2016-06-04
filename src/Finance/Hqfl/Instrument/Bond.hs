@@ -1,2 +1,6 @@
 module Finance.Hqfl.Instrument.Bond
-       where
+  (
+    Bond
+  )where
+
+data Bond
