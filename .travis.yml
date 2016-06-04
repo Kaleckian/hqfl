@@ -18,7 +18,7 @@ matrix:
 
   # The Stack builds. We can pass in arbitrary Stack arguments via the ARGS
   # variable, such as using --stack-yaml to point to a different file.
-  - env: BUILD=stack ARGS="--resolver lts-5"
+  - env: BUILD=stack ARGS="--resolver lts-6"
     compiler: ": #stack 7.10.3"
     addons: {apt: {packages: [ghc-7.10.3], sources: [hvr-ghc]}}
 
@@ -28,7 +28,7 @@ matrix:
     addons: {apt: {packages: [libgmp,libgmp-dev]}}
 
   # Build on OS X in addition to Linux
-  - env: BUILD=stack ARGS="--resolver lts-5"
+  - env: BUILD=stack ARGS="--resolver lts-6"
     compiler: ": #stack 7.10.3 osx"
     os: osx
 
@@ -79,12 +79,14 @@ install:
   set -ex
   case "$BUILD" in
     stack)
+      stack install hpc-coveralls
       stack --no-terminal --install-ghc $ARGS test --bench --only-dependencies
       ;;
     cabal)
       cabal --version
       travis_retry cabal update
       cabal install --only-dependencies --enable-tests --enable-benchmarks --force-reinstalls --ghc-options=-O0 --reorder-goals --max-backjumps=-1 $CABALARGS $PACKAGES
+      cabal install hpc-coveralls
       ;;
   esac
   set +ex
@@ -98,7 +100,8 @@ script:
       ;;
     cabal)
       cabal install --enable-tests --enable-benchmarks --force-reinstalls --ghc-options=-O0 --reorder-goals --max-backjumps=-1 $CABALARGS $PACKAGES
-
+      cabal configure --enable-tests --enable-library-coverage && cabal build
+      run-cabal-test 
       ORIGDIR=$(pwd)
       for dir in $PACKAGES
       do
@@ -112,3 +115,6 @@ script:
       ;;
   esac
   set +ex
+
+after_script:
+  - hpc-coveralls test/Spec
