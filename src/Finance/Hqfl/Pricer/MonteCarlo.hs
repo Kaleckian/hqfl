@@ -46,6 +46,6 @@ class MC a where
   mc_price :: PrimMonad m => a -> Int -> Int -> Double -> Double ->  m Double
 
 instance MC (Option Equity)  where
-  mc_price (Option (Equity p) t _ s m) paths steps rate vol  = case t of
+  mc_price (Option (Equity p) t _ s m q) paths steps rate vol  = case t of
       Call -> discount <$> avg <$> simulate paths steps p rate vol (m / fromIntegral steps) (\x -> max 0 (x - s))
       Put  -> discount <$> avg <$> simulate paths steps p rate vol (m / fromIntegral steps) (\x -> max 0 (s - x))

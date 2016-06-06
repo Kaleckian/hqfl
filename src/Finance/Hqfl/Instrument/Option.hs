@@ -56,7 +56,7 @@ Exotic options are non-Vanilla options:
 -- TODO: Function to get the current price of the underlying
 -- TODO: Typeclasses to categorise options according to their pricing function: American, European - each instance to supply pricing method
 
-data Option a = Option a Type Style Strike Maturity deriving (Show)
+data Option a = Option a Type Style Strike Maturity Dividend deriving (Show)
 
 -- experimenting; review later
 --instance Eq a => Eq (Option a) where

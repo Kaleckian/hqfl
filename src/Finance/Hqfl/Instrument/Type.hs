@@ -12,6 +12,7 @@
 module Finance.Hqfl.Instrument.Type
 (
     Barrier
+  , Dividend
   , Maturity
   , Price
   , Strike
@@ -25,6 +26,7 @@ type Maturity = Double
 type Price = Double
 type Strike = Double
 type Value = Double
+type Dividend = Double
 
 data Type = Call | Put deriving (Eq, Show)
 data Style = European | American deriving (Eq, Show)

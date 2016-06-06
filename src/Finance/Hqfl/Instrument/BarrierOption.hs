@@ -11,15 +11,24 @@
 
 module Finance.Hqfl.Instrument.BarrierOption
 (
-  BarrierOption(..)
+    BarrierType(..)
+  , BarrierOption(..)
 )
 where
 
 import Finance.Hqfl.Instrument.Type
+
+{-
+
+Exotic Options, Mark Rubenstein and Eric Reiener, 1992
+
+ Barrier options are path-dependent options where the payoff depends on not only on the final price of the underlying asset but also on whether or not the underlying asset has reached some other "barrier" during the life of the option.
+
+-}
 
 data BarrierType = DownAndIn
                  | UpAndIn
                  | DownAndOut
                  | UpAndOut
                  
-data BarrierOption a = BarrierOption a BarrierType Type Style Barrier Strike Maturity
+data BarrierOption a = BarrierOption a BarrierType Style Type Barrier Strike Maturity Dividend
