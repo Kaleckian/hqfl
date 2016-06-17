@@ -15,6 +15,7 @@ cache:
 
 before_install:
   - mkdir -p $HOME/.local/bin
+  - export GHCVER=7.10.3
   - export STACK_VERSION=0.1.8.0
   - export PATH=$HOME/.local/bin:$PATH
   - export STACK_FULLVERSION=stack-$STACK_VERSION-linux-x86_64
