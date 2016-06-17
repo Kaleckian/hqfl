@@ -80,48 +80,48 @@ puo s k r v t q h = -s * (cdf normal (-x1)) * exp(-q * t) + k * exp(-r * t) * (c
         normal = Normal (0 :: Double) 1
     
 class BS a where
-  blackscholesprice :: a -> Double -> Double -> Either String Double
+  blackscholesprice :: a -> Double -> Double -> Double
 
 instance BS (Option Equity) where
-  blackscholesprice (Option (Equity s) Call European k t q) r v = Right $ call s k r v t q
-  blackscholesprice (Option (Equity s) Put European k t q) r v = Right $ put s k r v t q
+  blackscholesprice (Option (Equity s) Call European k t q) r v = call s k r v t q
+  blackscholesprice (Option (Equity s) Put European k t q) r v = put s k r v t q
 
 -- TODO : factor in rebates
 instance BS (BarrierOption Equity) where
   blackscholesprice (BarrierOption (Equity s) x European y h k t q) r v =
     case (x, y) of
       (DownAndIn, Call)
-        | s <= h -> Left "Contract is converted to a vanilla call"
-        | h <= k -> Right cdi'
-        | h >= k -> Right $ call' - cdo'
+--        | s <= h -> Left "Contract is converted to a vanilla call"
+        | h <= k ->  cdi'
+        | h >= k ->   call' - cdo'
       (DownAndOut, Call)
-        | s <= h -> Left "Contract is void"
-        | h <= k -> Right $ call' - cdi'
-        | h >= k -> Right cdo'
+--        | s <= h -> Left "Contract is void"
+        | h <= k ->   call' - cdi'
+        | h >= k ->  cdo'
       (UpAndIn, Call)
-        | h <= s -> Left "Contract is converted to a vanilla call"
-        | h <= k -> Right call'
-        | h >= k -> Right $ cui'
+--        | h <= s -> Left "Contract is converted to a vanilla call"
+        | h <= k ->  call'
+        | h >= k ->   cui'
       (UpAndOut, Call)
-        | s <= h -> Left "Contract is void"
-        | h <= k -> Right $ call' - cdi'
-        | h >= k -> Right cdo'
+--        | s <= h -> Left "Contract is void"
+        | h <= k ->   call' - cdi'
+        | h >= k ->  cdo'
       (DownAndIn, Put)
-        | s <= h -> Left "Contract is converted to a vanilla call"
-        | h <  k -> Right pdi'
-        | h >= k -> Right put'
+--        | s <= h -> Left "Contract is converted to a vanilla call"
+        | h <  k ->  pdi'
+        | h >= k ->  put'
       (DownAndOut, Put)
-        | s <= h -> Left "Contract is void"
-        | h <  k -> Right $ put' - pdi'
-        | h >=  k -> Right 0
+--        | s <= h -> Left "Contract is void"
+        | h <  k ->   put' - pdi'
+        | h >=  k ->  0
       (UpAndIn, Put)
-        | h <= s -> Left "Contract is converted to a vanilla call"
-        | h <= k -> Right $ put' - puo'
-        | h >= k -> Right pui'
+--        | h <= s -> Left "Contract is converted to a vanilla call"
+        | h <= k ->   put' - puo'
+        | h >= k ->  pui'
       (UpAndOut, Put)
-        | h <= s -> Left "Contract is void"
-        | h <= k -> Right $ puo'
-        | h >= k -> Right $ put' - pui'
+--        | h <= s -> Left "Contract is void"
+        | h <= k ->   puo'
+        | h >= k ->   put' - pui'
     where
       call' = call s k r v t q 
       cdi'  = cdi  s k r v t q h
