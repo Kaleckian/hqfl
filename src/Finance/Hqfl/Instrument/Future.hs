@@ -1,8 +1,6 @@
 module Finance.Hqfl.Instrument.Future
   (
-    Future
-  )
-  
-       where
+    Future (..)
+  ) where
 
-data Future
+data Future = Future Double deriving (Show)
