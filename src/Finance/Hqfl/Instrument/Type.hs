@@ -13,16 +13,16 @@ module Finance.Hqfl.Instrument.Type
 (
     Barrier
   , Dividend
-  , Maturity
+  , Expiration
   , Price
   , Strike
   , Value
-  , Type(..)
-  , Style(..)
+  , Type (..)
+  , Style (..)
 ) where
   
 type Barrier = Double
-type Maturity = Double
+type Expiration = Double
 type Price = Double
 type Strike = Double
 type Value = Double
