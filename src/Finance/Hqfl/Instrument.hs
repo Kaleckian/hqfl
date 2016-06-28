@@ -14,7 +14,7 @@ module Finance.Hqfl.Instrument
        , module Finance.Hqfl.Instrument.Energy
        , module Finance.Hqfl.Instrument.Forward
        , module Finance.Hqfl.Instrument.Future
-       , module Finance.Hqfl.Instrument.Index
+       , module Finance.Hqfl.Instrument.StockIndex
        , module Finance.Hqfl.Instrument.Insurance
        , module Finance.Hqfl.Instrument.Swap
        , module Finance.Hqfl.Instrument.Weather
@@ -32,7 +32,7 @@ import Finance.Hqfl.Instrument.Currency
 import Finance.Hqfl.Instrument.Energy
 import Finance.Hqfl.Instrument.Forward
 import Finance.Hqfl.Instrument.Future
-import Finance.Hqfl.Instrument.Index
+import Finance.Hqfl.Instrument.StockIndex
 import Finance.Hqfl.Instrument.Insurance
 import Finance.Hqfl.Instrument.Swap
 import Finance.Hqfl.Instrument.Weather

@@ -1,4 +1,6 @@
 module Finance.Hqfl.Instrument.Equity
        where
 
-data Equity = Equity Double deriving (Show)
+import Finance.Hqfl.Instrument.Type
+
+data Equity = Equity Price Dividend deriving (Show)

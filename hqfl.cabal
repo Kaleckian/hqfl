@@ -31,7 +31,7 @@ library
                      , Finance.Hqfl.Instrument.Energy
                      , Finance.Hqfl.Instrument.Forward
                      , Finance.Hqfl.Instrument.Future
-                     , Finance.Hqfl.Instrument.Index
+                     , Finance.Hqfl.Instrument.StockIndex
                      , Finance.Hqfl.Instrument.Insurance
                      , Finance.Hqfl.Instrument.Swap
                      , Finance.Hqfl.Instrument.Weather
@@ -52,7 +52,7 @@ library
 executable hqfl-exe
   hs-source-dirs:      app
   main-is:             Main.hs
-  ghc-options:         -O2 -threaded -rtsopts -with-rtsopts=-N
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , containers >= 0.5.6.2
                      , ghc-mod
