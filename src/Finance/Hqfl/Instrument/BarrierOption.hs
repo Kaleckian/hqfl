@@ -22,7 +22,9 @@ import Finance.Hqfl.Instrument.Type
 
 Exotic Options, Mark Rubenstein and Eric Reiener, 1992
 
- Barrier options are path-dependent options where the payoff depends on not only on the final price of the underlying asset but also on whether or not the underlying asset has reached some other "barrier" during the life of the option.
+ Barrier options are path-dependent options where the payoff depends on not only
+on the final price of the underlying asset but also on whether or not the
+underlying asset has reached some other "barrier" during the life of the option.
 
 -}
 
@@ -31,4 +33,4 @@ data BarrierType = DownAndIn
                  | DownAndOut
                  | UpAndOut
                  
-data BarrierOption a = BarrierOption a BarrierType Style Type Barrier Strike Maturity Dividend
+data BarrierOption a = BarrierOption a BarrierType Style Type Barrier Strike Expiration
