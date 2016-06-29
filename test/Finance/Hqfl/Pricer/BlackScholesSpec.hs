@@ -18,7 +18,6 @@ module Finance.Hqfl.Pricer.BlackScholesSpec
 import Test.Hspec
 import Finance.Hqfl.Pricer.BlackScholes
 import Finance.Hqfl.Instrument
-import Data.Either
 
 main :: IO ()
 main = hspec spec
@@ -43,6 +42,13 @@ spec = do
      
       it "returns the price of a put" $
         (abs (price (Option (StockIndex 100 0.05) Put European 95 0.5) 0.1 0.2) - 2.46478764675582) < tolerance
+
+    context "Given an option on a currency" $ do
+      it "returns the price of a call" $
+        (abs (price (Option (Currency 1.56 0.08) Call European 1.6 0.5) 0.06 0.12) - 0.0290992) < tolerance
+     
+      it "returns the price of a put" $
+        (abs (price (Option (Currency 1.56 0.08) Put European 1.6 0.5) 0.06 0.12) - 0.08298058) < tolerance
 
     -- context "Given a Down-and-In European Call Equity Barrier Option" $ do
     --   context "When the stock price is less than the barrier" $ do

@@ -12,3 +12,4 @@
 | Option: StockIndex | Black Scholes | [BlackScholes](https://github.com/cokleisli/hqfl/blob/master/src/Finance/Hqfl/Pricer/BlackScholes.hs) |
 | Option: Futures | Black 1976 | [Black](https://github.com/cokleisli/hqfl/blob/master/src/Finance/Hqfl/Pricer/Black.hs) |
 | Option: Futures | Asay 1982 | [Asay](https://github.com/cokleisli/hqfl/blob/master/src/Finance/Hqfl/Pricer/Asay.hs) |
+| Option: Currency | Garman & Kohlhagen 1983 Black-Scholes | [BlackScholes](https://github.com/cokleisli/hqfl/blob/master/src/Finance/Hqfl/Pricer/BlackScholes.hs) |

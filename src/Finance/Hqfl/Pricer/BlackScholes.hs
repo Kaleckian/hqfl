@@ -37,6 +37,16 @@ instance BS (Option StockIndex) where
           d2 = d1 - v * sqrt t
           normal = Normal (0 :: Double) 1
 
+-- Garman & Kohlhagen (1983)
+instance BS (Option Currency) where
+  price (Option (Currency s rf) m European k t) r v =
+    case m of
+       Call -> s * exp (-rf * t) * cdf normal d1 - k * exp (-r * t) * cdf normal d2
+       Put  -> k * exp (-r * t) * cdf normal (-d2) - s * exp (-rf * t) * cdf normal (-d1)
+    where d1 = (log (s / k) + (r - rf + (v * v) / 2) * t) / (v * sqrt t)
+          d2 = d1 - v * sqrt t
+          normal = Normal (0 :: Double) 1
+
 -- cdi :: Double -> Double -> Double -> Double -> Double -> Double -> Double -> Double
 -- cdi s k r v t q h = s * exp(-q * t) * (h / s)**(2 * lambda) * (cdf normal y)
 --                     - k * exp(-r * t) * (h / s)**(2 * lambda - 2) * (cdf normal (y - (v * sqrt t)))

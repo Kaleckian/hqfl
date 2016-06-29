@@ -17,6 +17,7 @@ module Finance.Hqfl.Instrument.Type
   , Price
   , Strike
   , Value
+  , Rate
   , Type (..)
   , Style (..)
 ) where
@@ -27,6 +28,7 @@ type Price = Double
 type Strike = Double
 type Value = Double
 type Dividend = Double
+type Rate = Double
 
 data Type = Call | Put deriving (Eq, Show)
 data Style = European | American deriving (Eq, Show)
