@@ -6,3 +6,7 @@
 
 Haskell Quantitative Finance Library
 
+| Instrument | Pricing Methodology | Haskell Implementation |
+|------------|---------------------|------------------------|
+| Option: Equity | Black Scholes | [BlackScholes](https://github.com/cokleisli/hqfl/blob/master/src/Finance/Hqfl/Pricer/BlackScholes.hs) |
+| Option: StockIndex | Black Scholes | [BlackScholes](https://github.com/cokleisli/hqfl/blob/master/src/Finance/Hqfl/Pricer/BlackScholes.hs) |
