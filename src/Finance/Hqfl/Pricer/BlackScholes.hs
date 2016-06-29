@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------
 -- |
--- Module      :  Finance.Hqfl.Instrument.BlackScholes
+-- Module      :  Finance.Hqfl.Pricer.BlackScholes
 -- Copyright   :  (C) 2016 Mika'il Khan
 -- License     :  (see the file LICENSE)
 -- Maintainer  :  Mika'il Khan <co.kleisli@gmail.com>
