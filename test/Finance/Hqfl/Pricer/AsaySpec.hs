@@ -35,4 +35,3 @@ spec = do
      
       it "returns the price of a put" $
         (abs (price (Option (Future 4200) Put European 3800 0.75) 0 0.15) - 65.61854211535706) < tolerance
-y
