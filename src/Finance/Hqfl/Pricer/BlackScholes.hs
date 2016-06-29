@@ -15,13 +15,21 @@ module Finance.Hqfl.Pricer.BlackScholes where
 import Finance.Hqfl.Instrument
 import Statistics.Distribution.Normal
 import Data.Random
-import Data.Either
 
 class BS a where
-  price :: a -> Double  -> Double -> Double
+  price :: a -> Double -> Double -> Double
 
 instance BS (Option Equity) where
   price (Option (Equity s q) m European k t) r v =
+    case m of
+       Call -> s * exp (-q * t) * cdf normal d1 - k * exp (-r * t) * cdf normal d2
+       Put  -> k * exp (-r * t) * cdf normal (-d2) - s * exp (-q * t) * cdf normal (-d1)
+    where d1 = (log (s / k) + (r - q + (v * v) / 2) * t) / (v * sqrt t)
+          d2 = d1 - v * sqrt t
+          normal = Normal (0 :: Double) 1
+
+instance BS (Option StockIndex) where
+  price (Option (StockIndex s q) m European k t) r v =
     case m of
        Call -> s * exp (-q * t) * cdf normal d1 - k * exp (-r * t) * cdf normal d2
        Put  -> k * exp (-r * t) * cdf normal (-d2) - s * exp (-q * t) * cdf normal (-d1)

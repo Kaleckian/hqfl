@@ -16,13 +16,22 @@ spec = do
 
   let tolerance = 0.0001
   
+  -- Examples from: "The Complete Guide to Option Pricing Formulas", E.G. Haug, McGraw-Hill 2nd Edition
+  
   describe "Black Scholes Pricer" $ do
     context "Given an option on a stock" $ do
-      it "returns the price of a call" $ do
+      it "returns the price of a call" $
         (abs (price (Option (Equity 60 0) Call European 65 0.25) 0.08 0.3) - 2.1334) < tolerance
      
-      it "returns the price of a put" $ do
+      it "returns the price of a put" $
         (abs (price (Option (Equity 60 0) Put European 65 0.25) 0.08 0.3) - 5.84628) < tolerance
+
+    context "Given an option on a stock index" $ do
+      it "returns the price of a call" $
+        (abs (price (Option (StockIndex 100 0.05) Call European 95 0.5) 0.1 0.2) - 9.628983522021265) < tolerance
+     
+      it "returns the price of a put" $
+        (abs (price (Option (StockIndex 100 0.05) Put European 95 0.5) 0.1 0.2) - 2.46478764675582) < tolerance
 
     -- context "Given a Down-and-In European Call Equity Barrier Option" $ do
     --   context "When the stock price is less than the barrier" $ do
