@@ -17,6 +17,7 @@ library
   hs-source-dirs:      src
   exposed-modules:     Finance.Hqfl
                      , Finance.Hqfl.Rate
+                     , Finance.Hqfl.Rate.Libor
                      , Finance.Hqfl.Currency
                      , Finance.Hqfl.Instrument
                      , Finance.Hqfl.Instrument.Type
