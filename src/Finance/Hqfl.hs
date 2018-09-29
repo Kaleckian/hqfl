@@ -10,7 +10,10 @@
 ----------------------------------------------------------------------------   
 
 module Finance.Hqfl
-  ( module Finance.Hqfl.Instrument
+  (
+    module Finance.Hqfl.Instrument,
+    module Finance.Hqfl.Currency
   ) where
 
 import Finance.Hqfl.Instrument
+import Finance.Hqfl.Currency
