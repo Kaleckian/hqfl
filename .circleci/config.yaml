@@ -1,0 +1,63 @@
+defaults: &defaults
+  working_directory: ~/build
+  steps:
+    - checkout
+
+    - run:
+        command: git submodule sync --recursive
+        
+    - run:
+        command: git submodule update --recursive --init
+        
+    - run:
+        name: Write provided stack.yaml with predictable name
+        command: cp ${STACK_FILE} stack-build.txt
+
+    - run:
+        name: Figure out resolver for better caching
+        command: grep '^resolver:' stack-build.txt > resolver.txt
+
+    - run:
+        name: Create a composite cabal file for changes detection
+        command: find . -name "*.cabal" | grep -v "stack-work" | xargs cat > all-cabal.txt
+
+    - restore_cache:
+        keys:
+          - stack-cache-08-{{ arch }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum "stack-build.txt" }}-{{ checksum "all-cabal.txt" }}
+          - stack-cache-08-{{ arch }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum "stack-build.txt" }}
+          - stack-cache-08-{{ arch }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum "resolver.txt" }}
+
+    - run:
+        name: Stack setup
+        command: stack -j 2 --stack-yaml=${STACK_FILE} setup
+
+    - run:
+        name: Build
+        command: stack -j 2 --stack-yaml=${STACK_FILE} install
+
+    - run:
+        name: Test
+        command: stack -j 2 --stack-yaml=${STACK_FILE} test --dump-logs
+        no_output_timeout: 120m
+
+    - store_artifacts:
+        path: test-logs
+
+version: 2
+jobs:
+  ghc-8.4.3:
+    environment:
+      - STACK_FILE: "stack-8.4.3.yaml"
+    <<: *defaults
+
+  ghc-nightly:
+    environment:
+      - STACK_FILE: "stack.yaml"
+    <<: *defaults
+
+workflows:
+  version: 2
+  multiple-ghcs:
+    jobs:
+      - ghc-8.4.3
+      - ghc-nightly
