@@ -1,7 +1,5 @@
 defaults: &defaults
   working_directory: ~/build
-  docker:
-    - image: hqfl/hqfl-ci
   steps:
     - checkout
 
