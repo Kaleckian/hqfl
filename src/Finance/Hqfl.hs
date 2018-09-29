@@ -12,8 +12,10 @@
 module Finance.Hqfl
   (
     module Finance.Hqfl.Instrument,
-    module Finance.Hqfl.Currency
+    module Finance.Hqfl.Currency,
+    module Finance.Hqfl.Rate
   ) where
 
 import Finance.Hqfl.Instrument
 import Finance.Hqfl.Currency
+import Finance.Hqfl.Rate

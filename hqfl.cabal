@@ -16,6 +16,7 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
   exposed-modules:     Finance.Hqfl
+                     , Finance.Hqfl.Rate
                      , Finance.Hqfl.Currency
                      , Finance.Hqfl.Instrument
                      , Finance.Hqfl.Instrument.Type
