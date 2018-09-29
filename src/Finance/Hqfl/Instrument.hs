@@ -11,11 +11,8 @@
 
 module Finance.Hqfl.Instrument
        (
-         -- Capital Market Assets
          module Finance.Hqfl.Instrument.Equity
        , module Finance.Hqfl.Instrument.Bond
-
-         -- Derivatives
        , module Finance.Hqfl.Instrument.BarrierOption
        , module Finance.Hqfl.Instrument.Option
        , module Finance.Hqfl.Instrument.Cap
