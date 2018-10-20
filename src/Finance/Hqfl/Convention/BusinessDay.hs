@@ -15,9 +15,11 @@ module Finance.Hqfl.Convention.BusinessDay
   )
   where
 
-data BusinessDay = Following
+data BusinessDay = NoAdjustment
+                 | Following
                  | Preceding
                  | ModifiedFollowing
                  | ModifiedFollowingBimonthly
-                 | EndOfMonth
+                 | EndOfMonthNoAdjustment
+                 | EndOfMonthPrevious
                  
